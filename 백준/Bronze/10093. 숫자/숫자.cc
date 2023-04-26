@@ -19,9 +19,12 @@ int main() {
 		cout << 0 << endl;
 	else {
 		cout << b - a - 1 << endl;
+		for (unsigned long long i = a + 1; i < b; i++)
+			if ((b - a - 1) == 2)
+				cout << i << endl;
+			else cout << i << ' ' ;
 	}
 	
-	for (long long i = a + 1; i < b; i++)
-		cout << i << endl;
+	
 }
 

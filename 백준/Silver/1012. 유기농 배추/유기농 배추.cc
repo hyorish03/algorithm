@@ -1,63 +1,62 @@
 #include <iostream>
-#include <queue>
-#include <string.h>
+#include <cstring>
+#define MAX_SIZE 100
+#define INF 0x7fffffff
+
 using namespace std;
+int n, k, d;
+int dy[] = { 0, -1, 1, 0 };
+int dx[] = { 1, 0, 0, -1 };
 
-int N, M, T, C; // N = 배추밭의 가로길이, M = 배추밭의 새로길이, T = 테스트케이스, C = 배추의 수
-const int MAX = 1001;
-int map[MAX][MAX] = { 0, };
-bool visited[MAX][MAX] = { 0, };
-int cnt = 0;
-queue<pair<int,int>> q;
+bool board[51][51] = { 0, };
+bool visited[51][51] = { 0, };
 
-int dx[4] = { 1, -1, 0, 0 };
-int dy[4] = { 0, 0, 1, -1 };
-
-void BFS(int x, int y) {
+void DFS(int x, int y) {
 	visited[x][y] = true;
-	q.push({x, y});
 
-	while (!q.empty()) {
-		int x = q.front().first;
-		int y = q.front().second;
+	for (int i = 0; i < 4; i++) {
+		int ax = x + dx[i];
+		int ay = y + dy[i];
 
-		//cout << "현재위치: " << x << ", " << y << "\n";
-		q.pop();
-		for (int i = 0; i < 4; i++) { //상하좌우 탐색
-			int nx = x + dx[i];
-			int ny = y + dy[i];
+		if (ax < 0 || ay < 0 || ax >= n || ay >= k)
+			continue;
+		if (!board[ax][ay] || visited[ax][ay])
+			continue;
 
-			if (visited[nx][ny] == 0 && map[nx][ny] == 1) {
-				q.push({nx, ny});
-				visited[nx][ny] = true;
-			}
-		}
+		DFS(ax, ay);
 	}
 }
 
 int main() {
-	cin >> T;
+	std::ios::sync_with_stdio(false); cin.tie(0);
 
-	while (T--) {
-		int cnt = 0;
-		memset(map, 0, sizeof(map));
-		memset(visited, 0, sizeof(visited));
+	int t;
+	cin >> t;
 
-		cin >> N >> M >> C;
-		for (int i = 0; i < C; i++) {
-			int a, b;// a는 행 b는 열
-			cin >> a >> b;
-			map[a][b] = 1;
+	while (t--) {
+		cin >> n >> k >> d;
+
+		for (int i = 0; i < d; i++)
+		{
+			int x, y;
+			cin >> x >> y;
+			board[x][y] = true;
 		}
 
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				if (map[i][j] == 1 && visited[i][j] == 0) {
-					BFS(i, j);
-					cnt++;
+		int count = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < k; j++) {
+				if (board[i][j] == 1 && !visited[i][j])
+				{
+					count++;
+					DFS(i, j);
 				}
 			}
 		}
-		cout << cnt << "\n";
+
+		cout << count << '\n';
+		memset(board, 0, sizeof(board));
+		memset(visited, 0, sizeof(visited));
 	}
+
 }

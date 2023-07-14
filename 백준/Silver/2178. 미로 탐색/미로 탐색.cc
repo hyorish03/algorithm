@@ -17,7 +17,7 @@ char map[101][101]; // 미로
 int dx[4] = { 1, 0, -1, 0 };
 int dy[4] = { 0, 1, 0, -1 };
 
-void BFS(int x, int y) 
+void BFS(int x, int y)
 {
 	visit[x][y] = 1; // 방문표시
 
@@ -31,7 +31,7 @@ void BFS(int x, int y)
 
 		q.pop(); // 큐 맨 앞 데이터 제거
 
-		for (int i = 0; i < 4; i++) 
+		for (int i = 0; i < 4; i++)
 		{
 			int next_x = x + dx[i];
 			int next_y = y + dy[i];
@@ -53,7 +53,7 @@ void BFS(int x, int y)
 
 }
 
-int main(void) 
+int main(void)
 {
 	scanf("%d %d", &N, &M);
 	for (int i = 0; i < N; i++)
@@ -64,26 +64,4 @@ int main(void)
 	BFS(0, 0);
 	printf("%d\n", check[N - 1][M - 1] + 1);
 
-
-	/*
-	printf("\n<visit>\n");
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			printf("%d ", visit[i][j]);
-		}
-		printf("\n");
-	}
-	
-	printf("\n<check>\n");
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			printf("%2d ", check[i][j]);
-		}
-		printf("\n");
-	}
-	*/
 }

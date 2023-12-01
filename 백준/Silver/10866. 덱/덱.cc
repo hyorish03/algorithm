@@ -38,45 +38,45 @@ int main() {
         }
         if(s == "front"){
             if(d.empty()){
-                cout << -1 << endl;
+                cout << -1 << "\n";
             }else {
-                cout << d.front()<<endl;
+                cout << d.front()<<"\n";
                 
             }
             continue;
         }
         if(s == "back"){
             if(d.empty()){
-                cout << -1 << endl;
+                cout << -1 << "\n";
             }else {
-                cout << d.back()<<endl;
+                cout << d.back()<<"\n";
             }
             continue;
             
         }
         if(s == "size"){
-            cout << d.size()<<endl;
+            cout << d.size()<<"\n";
             continue;
         }
         if(s == "empty"){
-            cout << d.empty()<<endl;
+            cout << d.empty()<<"\n";
             continue;
             
         }
         if(s == "pop_front"){
             if(d.empty()){
-                cout << -1 << endl;
+                cout << -1 << "\n";
             }else {
-                cout << d.front() <<endl;
+                cout << d.front() <<"\n";
                 d.pop_front();
             }
             continue;
         }
         if(s == "pop_back"){
             if(d.empty()){
-                cout << -1 << endl;
+                cout << -1 << "\n";
             }else {
-                cout << d.back() <<endl;
+                cout << d.back() <<"\n";
                 d.pop_back();
             }
             

@@ -10,7 +10,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
         
-    map<string, pair<string, bool>> mp;
+    map<string, string> mp;
     vector<string> v;
     
     int n;
@@ -21,16 +21,15 @@ int main() {
         string s, t;
         cin >> s >> t;
         if(t == "enter"){
-            mp[s].first=t;
-            mp[s].second = true;
+            mp[s]=t;
         }
         else {
-            mp[s].second = false;
+            mp[s]=t;
         }
     }
     
     for(auto it = mp.begin(); it != mp.end(); it++){
-          if(it->second.second)
+          if(it->second == "enter")
               v.push_back(it->first);
     }
     

@@ -13,30 +13,31 @@ int main() {
     int n, m;
     cin >> n >> m;
     
-    vector<int> v;
-    for(int i = 0; i < n; i++){
-        int x;
-        cin >> x;
-        v.push_back(x);
-    }
+    vector<int> v(n);
     
+    
+    for(int i = 0; i < n; i++){
+        cin >> v[i];
+    }
+   
     sort(v.begin(), v.end());
     
-    int start = 0;
-    int end = 0;
-    int answer = MAX;
     
-    while(start < n &&  end < n){
-        int result = v[end]-v[start];
-        
-        if(result < m){
-            end++;
+    int st = 0, en = 0;
+    
+    int mins = MAX;
+    int ans = 0;
+    
+    while( st < n && en < n){
+        if(v[en]-v[st] >= m){
+            ans = v[en]-v[st];
+            mins = min(mins, ans);
+            st++;
         } else {
-            answer = min(answer, result);
-            start++;
+            en++;
         }
     }
     
-    cout << answer;
-   return 0;
+    cout << mins;
+    return 0;
 }

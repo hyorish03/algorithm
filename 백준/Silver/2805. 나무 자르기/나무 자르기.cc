@@ -1,44 +1,51 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#define MAX 2000000000
 
 using namespace std;
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-
-    vector<int> v(N);
-
-    for (int i = 0; i < N; i++) {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    
+    int n, m;
+    cin >> n >> m;
+    
+    vector<int> v(n);
+    
+    
+    for(int i = 0; i < n; i++){
         cin >> v[i];
     }
-
-    sort(v.begin(), v.end(), greater<int>());
-
-    int left = 0;
-    int right = v[0];
+   
+    sort(v.begin(), v.end());
+    
+    int start = 0;
+    int end = *max_element(v.begin(), v.end());
+    long long total = 0;
     int ans = 0;
-    while (left <= right) {
-        int mid = (left + right) / 2;
-        long long total = 0;
-
-        for (int i = 0; i < N; i++) {
-            if (v[i] > mid) {
+    
+    while(start <= end){
+        int mid = (start + end) / 2;
+        
+        total = 0;
+        
+        for(int i = 0; i < n; i++){
+            if(v[i] > mid)
                 total += v[i] - mid;
-            } else {
-                break;
-            }
         }
-
-        if (total >= M) {
+        
+        if (total >= m) {
             ans = mid;
-            left = mid + 1;
+            start = mid + 1;
         } else {
-            right = mid - 1;
+            end = mid - 1;
         }
     }
-
-    cout << ans << endl;
-   return 0;
+    
+    cout << ans;
+    
+    return 0;
 }

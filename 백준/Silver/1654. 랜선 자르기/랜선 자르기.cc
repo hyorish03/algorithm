@@ -1,39 +1,52 @@
-#include<iostream>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+
+#define MAX 2000000000
+#define MIN 0
+
 using namespace std;
 
-int k, n, ans;
-int line[10001];
-int  maxi = 0;
-long long mid, last, first;
-
-int main()
-{
-    cin >> k >> n;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
     
-    for (int i = 0; i < k; i++)
-    {
-        cin >> line[i];
-        if (maxi < line[i]) maxi = line[i];
+    
+    int n, m;
+    cin >> n >> m;
+        
+    vector<int> v(n);
+
+    for(int i = 0; i < n; i++){
+        cin >> v[i];
     }
-    first = 1;
-    last = maxi;
-    ans = 0;
-
-    while (first <= last)
-    {
-        mid = (first + last) / 2;
-        int cnt = 0;
-        for (int i = 0; i < k; i++)
-            cnt += line[i] / mid;
-
-        if (cnt >= n) {
-            first = mid + 1;
-            if (ans < mid) ans = mid;
+    
+    sort(v.begin(), v.end());
+    
+    long st = 1, en = v.back(), ans = 0;
+    
+    while(st<=en){
+        
+        long mid = (st+en)/2;
+        
+        int total = 0;
+        for(int i = 0; i < n; i++){
+             total += v[i] / mid;
         }
-        else {
-            last = mid - 1;
+        
+        
+        if(total >= m){
+            ans = max(ans, mid);
+            st = mid + 1;
+
+        } else {
+            en = mid - 1;
         }
     }
     
     cout << ans;
+    
+    return 0;
 }

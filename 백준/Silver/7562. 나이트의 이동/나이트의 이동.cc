@@ -1,59 +1,67 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include <queue>
+#include <cstring>
 
-using namespace std;
 #define MAX 301
 
-int T,I;
-int current_x,current_y,target_x,target_y;
-int arr[MAX][MAX];
-int visited[MAX][MAX];
-int dx[] = {1,2,2,1,-1,-2,-2,-1};
-int dy[] = {2,1,-1,-2,-2,-1,1,2};
-queue<pair<int,int>> q;
+using namespace std;
+int curx, cury, desx, desy;
+int dx[] = {2, 2, -2, -2, 1, 1, -1, -1};
+int dy[] = {1, -1, 1, -1, 2, -2, 2, -2};
+queue<pair<int, int>> q;
+int vis[MAX][MAX];
+int t, m;
 
-void reset() {
-	while (!q.empty()) q.pop();
-	for (int i = 0; i < MAX; i++) {
-		for (int j = 0; j < MAX; j++) {
-			visited[i][j] = 0;
-			arr[i][j] = 0;
-		}
-	}
+void reset(){
+    while(!q.empty()){ q.pop(); }
+    memset(vis, 0, sizeof(vis));
 }
 
-void bfs(int x,int y) {
-    q.push({x,y});
-    visited[x][y]=true;
-    while(!q.empty()) {
-        int a = q.front().first;
-        int b = q.front().second;
+void bfs(int curx, int cury){
+    q.push({curx, cury});
+    vis[curx][cury] = 1;  // 시작점의 방문 여부를 1로 초기화
+    
+    while(!q.empty()){
+        curx = q.front().first;
+        cury = q.front().second;
         q.pop();
-        if(a==target_x && b==target_y) {
-            cout <<arr[a][b] << "\n";
+        
+        if(curx == desx && cury == desy){
+            cout << vis[curx][cury] - 1 << '\n';  // 목적지에 도달했을 때 이동 횟수를 출력
             return;
         }
-        for(int i=0;i<8;i++) {
-            int na = a + dx[i];
-            int nb = b + dy[i];
-            if(0<=na && 0<=nb && na <I && nb < I && !visited[na][nb]) {
-                q.push({na,nb});
-                visited[na][nb]=true;
-                arr[na][nb]=arr[a][b]+1;
+        
+        for(int i = 0; i < 8; i++){
+            int nx = curx + dx[i];
+            int ny = cury + dy[i];
+            
+            if(nx < 0 || ny < 0 || nx >= m || ny >= m)
+                continue;
+            
+            if(vis[nx][ny] == 0){
+                vis[nx][ny] = vis[curx][cury] + 1;
+                q.push({nx, ny});
             }
         }
     }
 }
 
 int main() {
-    cin >> T;
-    for(int i=0;i<T;i++) {
-        cin >> I;
-        cin >> current_x >> current_y;
-        cin >> target_x >> target_y;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 
-        bfs(current_x,current_y);
-        reset();
+    cin >> t;
+
+    for(int i = 0; i < t; i++) {
+        cin >> m;
+        cin >> curx >> cury >> desx >> desy;
+        
+        reset();  // 각 테스트 케이스마다 초기화
+        bfs(curx, cury);
     }
+    
+    return 0;
 }
-

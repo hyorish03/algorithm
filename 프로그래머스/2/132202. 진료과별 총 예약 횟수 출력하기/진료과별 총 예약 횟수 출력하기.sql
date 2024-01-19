@@ -2,4 +2,4 @@
 SELECT MCDP_CD as 진료과코드, COUNT(*) AS 5월예약건수 FROM APPOINTMENT
 where APNT_YMD LIKE "2022-05%"
 GROUP BY MCDP_CD
-ORDER BY 5월예약건수 asc, MCDP_CD asc 
+ORDER BY 5월예약건수 asc, MCDP_CD asc

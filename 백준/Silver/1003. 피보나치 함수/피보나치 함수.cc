@@ -8,7 +8,7 @@ using namespace std;
 
 int t, n;
 
-pair<long long,long long> dp[41];
+pair<int,int> dp[41];
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

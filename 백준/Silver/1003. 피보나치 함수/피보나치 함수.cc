@@ -1,9 +1,5 @@
 
 #include <iostream>
-#include <set>
-#include <queue>
-#include <cstring>
-#include <algorithm>
 using namespace std;
 
 int t, n;

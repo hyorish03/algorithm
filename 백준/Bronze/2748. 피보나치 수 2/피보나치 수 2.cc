@@ -9,20 +9,15 @@ using namespace std;
 int n;
 long long dp[MAX];
 
-vector<int> ans;
-vector<int> result;
-
-long long dfs(int n){
+long long dfs(long long n){
     long long &ret = dp[n];
     
     if(ret != -1){
         return ret;
     }
-    
-    
-    ret = dfs(n-1) + dfs(n-2);
-    return ret;
-}
+        
+   ret = dfs(n-1) + dfs(n-2);
+    return ret;}
 
 int main()
 {

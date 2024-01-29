@@ -9,31 +9,17 @@ using namespace std;
 int n;
 long long dp[MAX];
 
-long long dfs(long long n){
-    long long &ret = dp[n];
-    
-    if(ret != -1){
-        return ret;
-    }
-        
-   ret = dfs(n-1) + dfs(n-2);
-    return ret;}
-
 int main()
 {
     FASTIO;
     cin >> n;
     
-    memset(dp, -1, sizeof dp);
-    
     dp[0] = 0;
     dp[1] = 1;
     dp[2] = 1;
     
-    if(n < 3){
-        cout << dp[n];
-    } else {
-        long long ret = dfs(n);
-        cout << ret;
+    for(int i = 3; i < 91; i++){
+        dp[i] = dp[i-1] + dp[i-2];
     }
+    cout << dp[n];
 }

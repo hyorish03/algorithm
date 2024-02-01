@@ -20,14 +20,8 @@ int dfs(int n){
 int main(){
     int n;
     cin >> n;
-    memset(dp, -1, sizeof(dp));
-    dp[1] = 1;
-    dp[2] = 2;
-    dp[3] = 1;
-    
-    int ans = dfs(n);
-//    cout << ans << ' ';
-    if(ans % 2 == 1){
+   
+    if(n % 2 == 1){
         cout << "SK";
     } else {
         cout << "CY";

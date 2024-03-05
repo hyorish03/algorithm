@@ -23,8 +23,8 @@ int main()
     int ans = 0;
     int sum = INF;
     for(int i = 0; i < n; i++){
-        sum = min(sum, v[i]);
-        int temp = sum * (i+1);
+
+        int temp = v[i] * (i+1);
         ans = max(ans, temp);
     }
     cout << ans;

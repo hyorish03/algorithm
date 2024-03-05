@@ -20,11 +20,9 @@ int main()
     
     sort(v.begin(), v.end(), greater<int>());
     
-    int ans = 0;
-    int sum = INF;
+    int ans = 0, temp  = 0;
     for(int i = 0; i < n; i++){
-
-        int temp = v[i] * (i+1);
+        temp = v[i] * (i+1);
         ans = max(ans, temp);
     }
     cout << ans;

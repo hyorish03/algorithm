@@ -11,7 +11,7 @@ void first(char cur){
     if(cur=='.')
        return;
        
-       cout<<cur;
+    cout<< cur;
     first(node[cur-'A'].first);
     first(node[cur-'A'].second);
 }

@@ -1,47 +1,46 @@
-#include<iostream>
-#include<string>
-#include<algorithm>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <queue>
+#include <algorithm>
 using namespace std;
- 
+
 string num;
-int max_cnt,answer;
- 
-void dfs(int idx, int cnt) {
-    // 탈출 조건
-    if (cnt == max_cnt) {
-        answer = max(answer, stoi(num));
+int ans = 0;
+void dfs(int idx, int cnt, int curCnt){
+    if(cnt == curCnt){
+        ans = max(ans, stoi(num));
         return;
     }
-    for (int i = idx; i < num.length()-1; i++) {
-        for (int j = i + 1; j < num.length(); j++) {
-            if (num[i] <= num[j]) {
+    
+    for(int i = idx; i < num.length()-1; i++){
+        for( int j = i+1; j < num.length(); j++){
+            if(num[i] <= num[j]){
                 swap(num[i], num[j]);
-                dfs(i, cnt + 1);
-                swap(num[i],num[j]);
+                dfs(i, cnt, curCnt+1);
+                swap(num[i], num[j]);
             }
-            // 무조건 바꾸어야하는 경우
-            if (i == num.length() - 2 && j == num.length() - 1) {
+            if(i == num.length()-2 && j == num.length() - 1){
                 swap(num[i], num[j]);
-                dfs(i, cnt + 1);
+                dfs(i, cnt, curCnt + 1);
                 swap(num[i], num[j]);
             }
         }
     }
+    
+    return;
 }
- 
-int main(int argc, char** argv)
-{
-    int test_case;
-    int T;
-     
-    cin >> T;
-     
-    for (test_case = 1; test_case <= T; ++test_case)
-    {
-        cin >> num>> max_cnt;
-        answer = 0;
-        dfs(0, 0);
-        cout << "#" << test_case << " " << answer << "\n";
+int main() {
+    int t;
+    cin >> t;
+    
+    for(int i = 1; i <= t; ++i){
+        int cnt;
+        cin >> num >> cnt;
+        ans = 0;
+        dfs(0, cnt, 0);
+        cout << "#" << i << ' '<< ans << '\n';
     }
     return 0;
 }
+

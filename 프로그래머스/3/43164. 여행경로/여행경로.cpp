@@ -10,7 +10,7 @@ bool vis[10001] = {0,};
 
 void dfs(string st){
     if(path.size() == t.size()+1){
-        if(answer.empty() || path < answer) {
+        if(answer.empty() ) {
             answer = path;
         }
         path.pop_back();

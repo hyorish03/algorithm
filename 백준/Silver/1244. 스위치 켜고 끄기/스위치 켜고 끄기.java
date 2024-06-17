@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /*
@@ -11,7 +10,17 @@ import java.util.StringTokenizer;
  * */
 
 public class Main {
-
+	
+	private static void Change(ArrayList<Integer> lst, int j) {
+		// TODO Auto-generated method stub
+		int temp = (int) lst.get(j);
+		if(temp == 1) {
+			lst.set(j, 0);
+		} else {
+			lst.set(j, 1);
+		}
+	}
+	
 	public static void main(String[] args) throws IOException {
 		// 입력도구: Scanner, BufferedReader(2배 빠름)
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,12 +45,7 @@ public class Main {
 			if(gender == 1) {
 				for(int j = 1; j < lst.size(); j++) {
 					if(j % idx == 0 && j != 0) {
-						int temp = lst.get(j);
-						if(temp == 1) {
-							lst.set(j, 0);
-						} else {
-							lst.set(j, 1);
-						}
+						Change(lst, j);
 					}
 				}
 			} else {
@@ -56,27 +60,12 @@ public class Main {
 				int right = idx+1;
 				while(left > 0 && right < lst.size()) {
 					if(lst.get(left) != lst.get(right)) break;
-					int Ltemp = lst.get(left);
-					int Rtemp = lst.get(right);
-					
-//					System.out.println("before: " + Ltemp + " " + Rtemp );
-					if(Ltemp == 1) {
-						lst.set(left, 0);
-					} else {
-						lst.set(left, 1);
-					}
-					
-					if(Rtemp == 1) {
-						lst.set(right, 0);
-					} else {
-						lst.set(right, 1);
-					}
-//					System.out.println("after: " + Ltemp + " " + Rtemp );
+					Change(lst, left);
+					Change(lst, right);
 					left--;
 					right++;
 					
 				}
-
 			}
 		}
 		
@@ -88,4 +77,6 @@ public class Main {
 		} 
 
 	}
+
+	
 }

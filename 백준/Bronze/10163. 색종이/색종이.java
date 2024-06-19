@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		int [][]Board = new int[1001][1001];
+		int [][]Board = new int[1002][1002];
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int tc = Integer.parseInt(br.readLine());
 		int minX = 10001;
@@ -16,8 +16,8 @@ public class Main {
 		int maxY = -1;
 		for(int i = 1; i <= tc; i++) {
 			StringTokenizer tok = new StringTokenizer(br.readLine(), " ");
-			int y = Integer.parseInt(tok.nextToken());
 			int x = Integer.parseInt(tok.nextToken());
+			int y = Integer.parseInt(tok.nextToken());
 			int w = Integer.parseInt(tok.nextToken());
 			int h = Integer.parseInt(tok.nextToken());
 			
@@ -31,29 +31,18 @@ public class Main {
 				}
 			}
 		}
-		
-//		for(int i = 0; i <= maxY; i++) {
-//			for(int j = 0; j <= maxX; j++) {
-//				System.out.print(Board[i][j] + " ");
-//			} System.out.println();
-//		}
-		
-//		System.out.println("++++++");
-//		System.out.println("minx: " + minX + " minY: " + minY + " maxX: " + maxX + "maxY" + maxY);
-		int arr[] = new int[tc+1];
+
 		
 		for(int idx = 1; idx <= tc; idx++) {
-			for(int i = 0; i <= maxY; i++) {
-				for(int j = 0; j <= maxX; j++) {
+			int cnt = 0;
+			for(int i = 0; i <= 1001; i++) {
+				for(int j = 0; j <= 1001; j++) {
 					if(Board[i][j] == idx) {
-						arr[idx]++;
+						cnt++;
 					}
 				}
 			}
-		}
-		
-		for(int i = 1; i <= tc; i++) {
-			System.out.println(arr[i]);
+			System.out.println(cnt);
 		}
 	
 	}

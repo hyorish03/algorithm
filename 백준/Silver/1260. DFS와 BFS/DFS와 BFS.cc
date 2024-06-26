@@ -1,58 +1,60 @@
 #include <iostream>
 #include <queue>
-#include <string.h>
-#define max  1001
-
+#include <cstring>
+#define FASTIO  cin.tie(0); cout.tie(0); ios_base::sync_with_stdio(false);
+#define MAX 1001
 using namespace std;
-int N, M, V; // N : 정점의 수, M : 간선의 수, V : 시점
 
+int arr[MAX][MAX];
+int vis[MAX];
+int n, v, st;
 queue<int> q;
-bool visited[max];
-int map[max][max];
-
-void DFS(int here) {
-	cout << here << " ";
-
-	visited[here] = 1;
-	for (int next = 1; next <= N; next++) {
-		if (map[here][next] && !visited[next])
-			DFS(next);
-	}
+void dfs(int cur){
+    vis[cur] = true;
+    cout << cur << ' ';
+    for(int i = 1; i <= n; i++){
+        if(!vis[i] && arr[cur][i]){
+            dfs(i);
+        }
+    }
+    
 }
 
-void BFS(int here) {
+void bfs(int st){
 
-	visited[here] = true;
+    q.push(st);
+    vis[st] = true;
+    
+    while(!q.empty()){
+        int cur = q.front();
+        cout << cur << ' ';
 
-	q.push(here);
-	while (!q.empty()) {
-		here = q.front();
-		cout << here << " ";
-
-		q.pop();
-		for (int next = 1; next <= N; next++) {
-			if (visited[next] == 0 && map[here][next] == 1) {
-				q.push(next);
-				visited[next] = true;
-			}
-		}
-
-	}
+        q.pop();
+        for(int i = 1; i <= n; i++){
+            if(vis[i] == 0 && arr[cur][i] == 1){
+                q.push(i);
+                vis[i] = true;
+            }
+        }
+    }
 }
-
 int main() {
-
-	cin >> N >> M >> V;
-
-	for (int i = 1; i <= M; i++) {
-		int a, b;
-		cin >> a >> b;
-		map[a][b] = 1;
-		map[b][a] = 1;
-	}
-
-	DFS(V);
-	cout << "\n";
-	memset(visited, 0, sizeof(visited));
-	BFS(V);
+    FASTIO;
+   
+    cin >> n >> v >> st;
+   
+    for(int i = 0; i < v; i++){
+        int a, b;
+        cin >> a >> b;
+        
+        arr[a][b] = true;
+        arr[b][a] = true;
+    }
+    
+    dfs(st);
+    memset(vis, 0, sizeof vis);
+    cout << '\n';
+    bfs(st);
+    return 0;
 }
+

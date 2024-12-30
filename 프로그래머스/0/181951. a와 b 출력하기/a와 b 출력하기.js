@@ -1,4 +1,4 @@
-const readline = require('readline');
+const readline = require("readline");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -6,11 +6,13 @@ const rl = readline.createInterface({
 })
 
 
-let arr = [];
+let input = [];
 
-rl.on('line', function(line){
-    arr = line.split(' ');
-}).on('close', function(){
-    console.log('a = ' + arr[0]);
-    console.log('b = ' + arr[1])
+rl.on('line', (line)=>{
+    input = line.split(' ');
+    
+    console.log("a = " + input[0]);
+    console.log("b = " + input[1]);
+    rl.close();
 })
+

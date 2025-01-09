@@ -1,0 +1,6 @@
+function solution(arr, qs) {
+    
+    const answer = qs.map(([s, e, k])=> arr.slice(s, e+1).filter((n)=> n > k).sort((a, b)=> a - b)[0] || -1 )
+    console.log(answer)
+    return answer;
+}

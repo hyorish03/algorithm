@@ -1,20 +1,20 @@
-function* gen(){
-    let i = 1;
-    while(true){
-        yield Number(i.toString(2))*5
-        i++;
-    }
-}
-
 function solution(l, r) {
     var answer = [];
-    let g = gen();
     
-    for(let value of g){
-        if(value >= l && value <= r){
-            answer.push(value)
+    for(let i = l; i <= r; i++){
+        let num = i.toString();
+        let flag = true;
+        for(let n of num){
+            if(n !== "5" && n !== "0"){
+                flag = false;
+                break;
+            }
         }
-        if(value > r) break;
+        
+        if(flag){
+            answer.push(Number(num))
+        }
+        
     }
     
     return answer.length > 0 ? answer : [-1];

@@ -19,7 +19,6 @@ class Queue {
   size() {
     return this.tail - this.head;
   }
-
   pop() {
     if (this.size() === 0) return -1;
     const value = this.data[this.head];
@@ -32,7 +31,7 @@ class Queue {
   }
 
   back() {
-    return this.size() === 0 ? -1 : this.data[this.tail - 1]; // 수정
+    return this.size() === 0 ? -1 : this.data[this.tail - 1];
   }
 
   empty() {
@@ -42,8 +41,7 @@ class Queue {
 
 let q = new Queue();
 let answer = [];
-
-for (let i = 1; i <= tc; i++) { // 반복문 범위 수정
+for (let i = 0; i <= tc; i++) {
   const [op, num] = input[i].split(" ");
 
   switch (op) {
@@ -72,6 +70,4 @@ for (let i = 1; i <= tc; i++) { // 반복문 범위 수정
       break;
   }
 }
-
-// 모든 결과를 한 번에 출력
 console.log(answer.join("\n"));

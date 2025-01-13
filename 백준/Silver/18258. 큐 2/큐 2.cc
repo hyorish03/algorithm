@@ -1,45 +1,60 @@
 #include <iostream>
 #include <queue>
-#include <string>
+#include <vector>
+#include <cstring>
+#define FASTIO  cin.tie(0); cout.tie(0); ios_base::sync_with_stdio(false);
+#define INTMAX 1000000001
 using namespace std;
 
-int main(void) {
-    cin.tie(0);
-    cin.sync_with_stdio(0);
-	int num, data;
-	queue<int> q; string str;
-	cin >> num;
-
-	for (int i = 0; i < num; i++) {
-		cin >> str;
-
-		if (str == "push") {
-			cin >> data;
-			q.push(data);
-		}
-		else if (str == "pop") {
-			if (q.size() == 0) std::cout << "-1\n";
-			else {
-				data = q.front();
-				q.pop();
-				cout << data << "\n";
-			}
-		}
-		else if (str == "size") {
-			cout << q.size() << "\n";
-		}
-		else if (str == "empty") {
-			cout << q.empty() << "\n";
-		}
-		else if (str == "front") {
-			if (q.size() == 0) std::cout << "-1\n";
-			else cout << q.front() << "\n";
-		}
-		else if (str == "back") {
-			if (q.size() == 0) std::cout << "-1\n";
-			else cout << q.back() << "\n";
-		}
-	}
-	return 0;
+int main() {
+    FASTIO;
+    queue<int> q;
+    
+    int tc;
+    cin >> tc;
+    
+    for(int i = 0; i < tc; i++){
+        string op;
+        int num;
+        
+        cin >> op;
+        
+        if(op == "push"){
+            cin >> num;
+            q.push(num);
+        }
+        
+        if(op == "pop"){
+            if(q.size() == 0) {cout << -1 << '\n';}
+            else {
+                cout << q.front() << '\n';
+                q.pop();
+            }
+        }
+        
+        if(op == "size"){
+            cout << q.size() << '\n';
+        }
+        
+        if(op == "empty"){
+            cout << q.empty()<< '\n';
+        }
+        
+        if(op == "front"){
+            if(q.size() == 0) {cout << -1 << '\n';}
+            else {
+                cout << q.front()<< '\n';
+            }
+        }
+        
+        if(op == "back"){
+            if(q.size() == 0) {cout << -1 << '\n';}
+            else {
+                cout << q.back()<< '\n';
+            }
+        }
+        
+    }
+   
+    return 0;
 }
-
